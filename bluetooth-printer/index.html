@@ -248,7 +248,7 @@ limitations under the License.
           if (printCharacteristic == null) {
             navigator.bluetooth.requestDevice({
               filters: [{
-                services: ['InnerPrinter', 'Jack lai de wor',]
+                services: ['InnerPrinter']
               }]
             })
             .then(device => {
