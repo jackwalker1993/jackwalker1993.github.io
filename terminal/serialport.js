@@ -78,8 +78,8 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
 
 
-  let button = document.getElementById("pay");
-  button.addEventListener("click", async () => {
+  let button2 = document.getElementById("pay");
+  button2.addEventListener("click", async () => {
     if ("serial" in navigator) {
       console.log("supported");
     } else {
