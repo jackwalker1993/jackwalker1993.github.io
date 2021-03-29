@@ -1,0 +1,105 @@
+<html>
+  <body>
+    <textarea id="printContent"></textarea>
+    <input type="submit" onclick="connectAndPrint()" value="Print" />
+    <p>
+      Type text into box and click on submit button.
+      <script>
+        var device;
+
+        const ESCPOS = {
+          encoderText: new TextEncoder(),
+          NEW_LINE: new Uint8Array([0x0d, 0x0a]),
+          PARTIAL_CUT_1: new Uint8Array([0x1b, 0x69]),
+          CHAR_SIZE_0: new Uint8Array([0x1d, 0x21, 0x00]),
+          CHAR_SIZE_1: new Uint8Array([0x1d, 0x21, 0x01]),
+          CHAR_SIZE_2: new Uint8Array([0x1d, 0x21, 0x30]),
+          CHAR_SIZE_3: new Uint8Array([0x1d, 0x21, 0x31]),
+          BOLD_SET: new Uint8Array([0x1b, 0x45, 0x01]),
+          BOLD_RESET: new Uint8Array([0x1b, 0x45, 0x00]),
+          UNDERLINE_SET: new Uint8Array([0x1b, 0x2d, 0x01]),
+          UNDERLINE_RESET: new Uint8Array([0x1b, 0x2d, 0x00]),
+          CENTER_JUSTIFICATION: new Uint8Array([0x1b, 0x61, 0x01]),
+          LEFT_JUSTIFICATION: new Uint8Array([0x1b, 0x61, 0x00]),
+          RIGHT_JUSTIFICATION: new Uint8Array([0x1b, 0x61, 0x02]),
+          DRAWER_OPEN: new Uint8Array([0x1b, 0x70, 0x00, 0x32, -0x06]),
+
+          TXT_ITALIC_OFF: new Uint8Array([0x1b, 0x45]),
+          TXT_ITALIC_ON: new Uint8Array([0x1b, 0x34]),
+        };
+
+        function setup(device) {
+          return device
+            .open()
+            .then(() => device.selectConfiguration(1))
+            .then(() => device.claimInterface(0));
+        }
+
+        function print() {
+          var string = document.getElementById("printContent").value + "\n";
+          var encoder = new TextEncoder();
+          let output = new Uint8Array();
+          output = arrays8append(output, ESCPOS.NEW_LINE);
+		  output = arrays8append(output, ESCPOS.TXT_ITALIC_ON);
+          output = arrays8append(output, encoder.encode(string));
+          output = arrays8append(output, ESCPOS.NEW_LINE);
+          output = arrays8append(output, ESCPOS.NEW_LINE);
+          output = arrays8append(output, ESCPOS.NEW_LINE);
+          output = arrays8append(output, ESCPOS.NEW_LINE);
+          output = arrays8append(output, ESCPOS.PARTIAL_CUT_1);
+
+          output = arrays8append(output, ESCPOS.CHAR_SIZE_2);
+          output = arrays8append(output, encoder.encode(string));
+          output = arrays8append(output, ESCPOS.NEW_LINE);
+          output = arrays8append(output, ESCPOS.NEW_LINE);
+          output = arrays8append(output, ESCPOS.NEW_LINE);
+          output = arrays8append(output, ESCPOS.NEW_LINE);
+          output = arrays8append(output, ESCPOS.PARTIAL_CUT_1);
+          console.log("start print");
+          console.log(string);
+          console.log(output);
+          device.transferOut(1, output).catch((error) => {
+            console.log(error);
+          });
+        }
+
+        function arrays8append(a1, a2) {
+          const tmp = new Uint8Array(a1.length + a2.length);
+          tmp.set(a1, 0);
+          tmp.set(a2, a1.byteLength);
+          return tmp;
+        }
+
+        function connectAndPrint() {
+          if (device == null) {
+            navigator.usb
+              .requestDevice({
+                filters: [{ vendorId: 0x04b8 }, { vendorId: 0x072f }],
+              })
+              .then((selectedDevice) => {
+                device = selectedDevice;
+                console.log(device);
+                return setup(device);
+              })
+              .then(() => print())
+              .catch((error) => {
+                console.log(error);
+              });
+          } else print();
+        }
+
+        navigator.usb
+          .getDevices()
+          .then((devices) => {
+            if (devices.length > 0) {
+              device = devices[0];
+              return setup(device);
+            }
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      </script>
+    </p>
+  </body>
+</html>
