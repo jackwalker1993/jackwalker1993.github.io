@@ -247,9 +247,8 @@ limitations under the License.
           progress.hidden = false;
           if (printCharacteristic == null) {
             navigator.bluetooth.requestDevice({
-              filters: [{
-                services: ['InnerPrinter']
-              }]
+              acceptAllDevices: true,
+  optionalServices: ['battery_service']
             })
             .then(device => {
               console.log('> Found ' + device.name);
