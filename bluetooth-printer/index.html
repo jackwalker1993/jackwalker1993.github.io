@@ -257,7 +257,7 @@ limitations under the License.
               return device.gatt.connect();
             })
             .then(server => server.getPrimaryService("00001101-0000-1000-8000-00805F9B34FB"))
-            .then(service => service.getCharacteristic("00002af1-0000-1000-8000-00805f9b34fb"))
+            .then(service => service.getCharacteristic("00001101-0000-1000-8000-00805F9B34FB"))
             .then(characteristic => {
               // Cache the characteristic
               printCharacteristic = characteristic;
