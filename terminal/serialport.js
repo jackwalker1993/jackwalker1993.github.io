@@ -3,8 +3,10 @@ document.addEventListener("DOMContentLoaded", (event) => {
   button.addEventListener("click", async () => {
     if ("serial" in navigator) {
       console.log("supported");
+      window.alert("supported");
     } else {
       console.log("Not supported");
+      window.alert("Not supported");
     }
 
     try {
