@@ -320,8 +320,11 @@
         }
 
         function addMessage(str) {
-          var element = document.body // or grab any dom node
-          element.innerHTML += '<div>' + str + '</div>'
+          var div = document.createElement('div');
+          div.innerHTML = str;
+          div.style.color = 'red';
+
+          document.body.appendChild(div);
         }
 
         function connectAndTrigger() {
