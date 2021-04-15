@@ -1,11 +1,16 @@
 <html>
   <body>
-    <textarea id="printContent"></textarea>
-    <input type="submit" onclick="connectAndTrigger()" value="Print" />
+    <p>Configuration Number</p>
+    <textarea id="configuration"></textarea>
+    <br>
+    <p>Interface Number</p>
+    <textarea id="interface"></textarea>
+    <input type="submit" onclick="connectAndTrigger()" value="Trigger" />
     <p>
       Type text into box and click on submit button.
       <script>
         var device;
+        var configurationUsed = 0
         var interfaceUsed = 0;
 
         const ESCPOS = {
@@ -38,7 +43,8 @@
               try{
                 addMessage("Try selectConfiguration");
                 console.log("Try selectConfiguration");
-                device.selectConfiguration(2)
+                addMessage("selectConfiguration : " + configurationUsed);
+                device.selectConfiguration(configurationUsed)
               } catch (error){
                 addMessage("selectConfiguration Error : " + error);
               }
@@ -50,8 +56,8 @@
                 addMessage("Try Claim Interface");
                 console.log("Try Claim Interface");
 
-                addMessage("Claiming : " + 0);
-                device.claimInterface(0)
+                addMessage("Claiming : " + interfaceUsed);
+                device.claimInterface(interfaceUsed)
                 addMessage("Claim Success");
               } catch (error) {
                 addMessage("Claim Interface Error : " + error);
@@ -328,8 +334,10 @@
         }
 
         function connectAndTrigger() {
-          var numberOfinterface = document.getElementById("printContent").value
-          interfaceUsed = parseInt(numberOfinterface, 2);
+          var numberOfinterface = document.getElementById("interface").value
+          var numberofConfiguration = document.getElementById("configuration".value)
+          interfaceUsed = parseInt(numberOfinterface, 10);
+          configurationUsed = parseInt(numberofConfiguration,10)
 
           addMessage("First getDevices");
           console.log("First getDevices");
