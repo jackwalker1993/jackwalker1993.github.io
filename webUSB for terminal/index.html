@@ -79,11 +79,16 @@
           if (endpointNumber < 15) {
             endpointNumber = endpointNumber + 1;
             addMessage("transferOut endpointNumber: " + endpointNumber);
-            device.transferOut(0, resetSequenceCommand).catch((error) => {
-              console.log(error);
-              addMessage("transferOut Error : " + error);
-              // window.alert("transferOut : " + error);
-            });
+            try {
+              device.transferOut(endpointNumber, resetSequenceCommand).catch((error) => {
+                console.log(error);
+                addMessage("transferOut Error : " + error);
+                // window.alert("transferOut : " + error);
+              });
+            } catch (error) {
+              addMessage("Inside transferOut Error : " + error);
+            }
+
 
           }
 
