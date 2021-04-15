@@ -49,7 +49,10 @@
                 addMessage("Try Claim Interface");
                 console.log("Try Claim Interface");
                 var numberOfinterface = document.getElementById("printContent").value
-                device.claimInterface(numberOfinterface)
+                var integer = parseInt(text, numberOfinterface);
+                addMessage("Claiming : " + integer);
+                device.claimInterface(integer)
+                addMessage("Claim Success");
               } catch (error) {
                 addMessage("Claim Interface Error : " + error);
               }
@@ -76,21 +79,26 @@
           )
           console.log("resetSequenceCommand : " + resetSequenceCommand);
 
-          let endpointNumber = 0;
-          if (endpointNumber < 15) {
-            endpointNumber = endpointNumber + 1;
-            addMessage("transferOut endpointNumber: " + endpointNumber);
-            try {
-              device.transferOut(endpointNumber, resetSequenceCommand).catch((error) => {
-                console.log(error);
-                addMessage("transferOut Error : " + error);
-                // window.alert("transferOut : " + error);
-              });
-            } catch (error) {
-              addMessage("Inside transferOut Error : " + error);
-            }
+          try {
+            addMessage("transferOut endpointNumber: " + 0);
+            device.transferOut(0, resetSequenceCommand).catch((error) => {
+              console.log(error);
+              addMessage("transferOut Error : " + error);
+              // window.alert("transferOut : " + error);
+            });
+          } catch (error) {
+            addMessage("Inside transferOut Error : " + error);
+          }
 
-
+          try {
+            addMessage("transferOut endpointNumber: " + 1);
+            device.transferOut(1, resetSequenceCommand).catch((error) => {
+              console.log(error);
+              addMessage("transferOut Error : " + error);
+              // window.alert("transferOut : " + error);
+            });
+          } catch (error) {
+            addMessage("Inside transferOut Error : " + error);
           }
 
           try {
@@ -202,6 +210,110 @@
           } catch (error) {
             addMessage("Inside transferOut Error : " + error);
           }
+
+        }
+
+        try {
+          addMessage("transferOut endpointNumber: " + 11);
+          device.transferOut(11, resetSequenceCommand).catch((error) => {
+            console.log(error);
+            addMessage("transferOut Error : " + error);
+            // window.alert("transferOut : " + error);
+          });
+        } catch (error) {
+          addMessage("Inside transferOut Error : " + error);
+        }
+
+        }
+
+        try {
+          addMessage("transferOut endpointNumber: " + 12);
+          device.transferOut(12, resetSequenceCommand).catch((error) => {
+            console.log(error);
+            addMessage("transferOut Error : " + error);
+            // window.alert("transferOut : " + error);
+          });
+        } catch (error) {
+          addMessage("Inside transferOut Error : " + error);
+        }
+
+        }
+
+        try {
+          addMessage("transferOut endpointNumber: " + 13);
+          device.transferOut(13, resetSequenceCommand).catch((error) => {
+            console.log(error);
+            addMessage("transferOut Error : " + error);
+            // window.alert("transferOut : " + error);
+          });
+        } catch (error) {
+          addMessage("Inside transferOut Error : " + error);
+        }
+
+        }
+
+        try {
+          addMessage("transferOut endpointNumber: " + 14);
+          device.transferOut(14, resetSequenceCommand).catch((error) => {
+            console.log(error);
+            addMessage("transferOut Error : " + error);
+            // window.alert("transferOut : " + error);
+          });
+        } catch (error) {
+          addMessage("Inside transferOut Error : " + error);
+        }
+
+        }
+
+        try {
+          addMessage("transferOut endpointNumber: " + 15);
+          device.transferOut(15, resetSequenceCommand).catch((error) => {
+            console.log(error);
+            addMessage("transferOut Error : " + error);
+            // window.alert("transferOut : " + error);
+          });
+        } catch (error) {
+          addMessage("Inside transferOut Error : " + error);
+        }
+
+        }
+
+        try {
+          addMessage("transferOut endpointNumber: " + 16);
+          device.transferOut(16, resetSequenceCommand).catch((error) => {
+            console.log(error);
+            addMessage("transferOut Error : " + error);
+            // window.alert("transferOut : " + error);
+          });
+        } catch (error) {
+          addMessage("Inside transferOut Error : " + error);
+        }
+
+        }
+
+        try {
+          addMessage("transferOut endpointNumber: " + 17);
+          device.transferOut(17, resetSequenceCommand).catch((error) => {
+            console.log(error);
+            addMessage("transferOut Error : " + error);
+            // window.alert("transferOut : " + error);
+          });
+        } catch (error) {
+          addMessage("Inside transferOut Error : " + error);
+        }
+
+        }
+
+        try {
+          addMessage("transferOut endpointNumber: " + 18);
+          device.transferOut(18, resetSequenceCommand).catch((error) => {
+            console.log(error);
+            addMessage("transferOut Error : " + error);
+            // window.alert("transferOut : " + error);
+          });
+        } catch (error) {
+          addMessage("Inside transferOut Error : " + error);
+        }
 
         }
 
