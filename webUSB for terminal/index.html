@@ -51,7 +51,7 @@
                 console.log("Try Claim Interface");
 
                 addMessage("Claiming : " + interfaceUsed);
-                device.claimInterface(interfaceUsed)
+                device.claimInterface(0)
                 addMessage("Claim Success");
               } catch (error) {
                 addMessage("Claim Interface Error : " + error);
