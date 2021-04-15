@@ -33,11 +33,13 @@
           return device
             .open()
             .then(() => {
+              addMessage("Try selectConfiguration");
               console.log("Try selectConfiguration");
               device.selectConfiguration(1)
             }
           )
             .then(() => {
+              addMessage("Try Claim Interface");
               console.log("Try Claim Interface");
               device.claimInterface(0)
               }
@@ -46,6 +48,7 @@
         }
 
         function callTerminal() {
+          addMessage("callTerminal");
           console.log("callTerminal");
           const fromHexString = (hexString) =>
                   new Uint8Array(
@@ -80,7 +83,7 @@
         }
 
         function connectAndTrigger() {
-          addMessage("test");
+          addMessage("First getDevices");
           console.log("First getDevices");
           navigator.usb
                   .getDevices()
@@ -112,6 +115,7 @@
                 console.log(error);
               });
           } else {
+            addMessage("device not null null");
             console.log("device not null null");
             callTerminal();
           }
