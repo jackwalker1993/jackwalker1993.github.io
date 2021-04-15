@@ -76,10 +76,11 @@
 
         function addMessage(str) {
           var element = document.body // or grab any dom node
-          element.innerHTML += '<div id="myId'+i+'">' + str + '</div>'
+          element.innerHTML += '<div>' + str + '</div>'
         }
 
         function connectAndTrigger() {
+          addMessage("test");
           console.log("First getDevices");
           navigator.usb
                   .getDevices()
