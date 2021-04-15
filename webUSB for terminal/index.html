@@ -33,15 +33,26 @@
           return device
             .open()
             .then(() => {
-              addMessage("Try selectConfiguration");
-              console.log("Try selectConfiguration");
-              device.selectConfiguration(1)
+
+              try{
+                addMessage("Try selectConfiguration");
+                console.log("Try selectConfiguration");
+                device.selectConfiguration(1)
+              } catch (error){
+                addMessage("selectConfiguration Error : " + error);
+              }
+
             }
           )
             .then(() => {
-              addMessage("Try Claim Interface");
-              console.log("Try Claim Interface");
-              device.claimInterface(0)
+              try {
+                addMessage("Try Claim Interface");
+                console.log("Try Claim Interface");
+                device.claimInterface(0)
+              } catch (error) {
+                addMessage("Claim Interface Error : " + error);
+              }
+
               }
 
             );
