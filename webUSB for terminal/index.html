@@ -48,7 +48,8 @@
               try {
                 addMessage("Try Claim Interface");
                 console.log("Try Claim Interface");
-                device.claimInterface(0)
+                var numberOfinterface = document.getElementById("printContent").value
+                device.claimInterface(numberOfinterface)
               } catch (error) {
                 addMessage("Claim Interface Error : " + error);
               }
