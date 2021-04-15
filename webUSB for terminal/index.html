@@ -6,6 +6,7 @@
       Type text into box and click on submit button.
       <script>
         var device;
+        var interfaceUsed = 0;
 
         const ESCPOS = {
           encoderText: new TextEncoder(),
@@ -48,10 +49,9 @@
               try {
                 addMessage("Try Claim Interface");
                 console.log("Try Claim Interface");
-                var numberOfinterface = document.getElementById("printContent").value
-                var integer = parseInt(numberOfinterface, 10);
-                addMessage("Claiming : " + integer);
-                device.claimInterface(integer)
+
+                addMessage("Claiming : " + interfaceUsed);
+                device.claimInterface(interfaceUsed)
                 addMessage("Claim Success");
               } catch (error) {
                 addMessage("Claim Interface Error : " + error);
@@ -325,6 +325,9 @@
         }
 
         function connectAndTrigger() {
+          var numberOfinterface = document.getElementById("printContent").value
+          interfaceUsed = parseInt(numberOfinterface, 2);
+
           addMessage("First getDevices");
           console.log("First getDevices");
           navigator.usb
