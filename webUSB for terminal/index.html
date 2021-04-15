@@ -341,18 +341,18 @@
 
           addMessage("First getDevices");
           console.log("First getDevices");
-          // navigator.usb
-          //         .getDevices()
-          //         .then((devices) => {
-          //           if (devices.length > 0) {
-          //             device = devices[0];
-          //             return setup(device);
-          //           }
-          //         })
-          //         .catch((error) => {
-          //           addMessage("getDevices : " + error);
-          //           console.log(error);
-          //         });
+          navigator.usb
+                  .getDevices()
+                  .then((devices) => {
+                    if (devices.length > 0) {
+                      device = devices[0];
+                      return setup(device);
+                    }
+                  })
+                  .catch((error) => {
+                    addMessage("getDevices : " + error);
+                    console.log(error);
+                  });
 
           if (device == null) {
             addMessage("device null");
