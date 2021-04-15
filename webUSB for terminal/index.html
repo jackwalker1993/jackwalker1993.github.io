@@ -49,7 +49,7 @@
                 addMessage("Try Claim Interface");
                 console.log("Try Claim Interface");
                 var numberOfinterface = document.getElementById("printContent").value
-                var integer = parseInt(text, numberOfinterface);
+                var integer = parseInt(numberOfinterface, 10);
                 addMessage("Claiming : " + integer);
                 device.claimInterface(integer)
                 addMessage("Claim Success");
