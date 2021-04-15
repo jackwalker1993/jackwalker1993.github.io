@@ -53,6 +53,7 @@
           )
             .then(() => {
               try {
+                addMessage("Correct Interface number" + device.configuration.interfaces[0].interfaceNumber);
                 addMessage("Try Claim Interface");
                 console.log("Try Claim Interface");
 
