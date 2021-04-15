@@ -74,11 +74,20 @@
                   "02800000001E7E2BF0000000D063D90E0000001001000000010000000040000000101001000000000057100000014E61BC000000000000000000000000000000000000000A0000000050003800000C00000001500038E803000009000000265000380121000000000000330000000000000000000000000000000000000000000000000004"
           )
           console.log("resetSequenceCommand : " + resetSequenceCommand);
-          device.transferOut(0, resetSequenceCommand).catch((error) => {
-            console.log(error);
-            addMessage("transferOut : " + error);
-            // window.alert("transferOut : " + error);
-          });
+
+          let endpointNumber = 0;
+          if (endpointNumber < 15) {
+            endpointNumber = endpointNumber + 1;
+            addMessage("transferOut endpointNumber: " + endpointNumber);
+            device.transferOut(0, resetSequenceCommand).catch((error) => {
+              console.log(error);
+              addMessage("transferOut Error : " + error);
+              // window.alert("transferOut : " + error);
+            });
+
+          }
+
+
         }
 
         function arrays8append(a1, a2) {
