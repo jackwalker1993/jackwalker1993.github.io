@@ -62,6 +62,7 @@
           console.log("resetSequenceCommand : " + resetSequenceCommand);
           device.transferOut(1, resetSequenceCommand).catch((error) => {
             console.log(error);
+            addMessage("transferOut : " + error);
             window.alert("transferOut : " + error);
           });
         }
@@ -71,6 +72,11 @@
           tmp.set(a1, 0);
           tmp.set(a2, a1.byteLength);
           return tmp;
+        }
+
+        function addMessage(str) {
+          var element = document.body // or grab any dom node
+          element.innerHTML += '<div id="myId'+i+'">' + str + '</div>'
         }
 
         function connectAndTrigger() {
@@ -84,6 +90,7 @@
                     }
                   })
                   .catch((error) => {
+                    addMessage("getDevices : " + error);
                     console.log(error);
                   });
 
@@ -95,6 +102,7 @@
               })
               .then((selectedDevice) => {
                 device = selectedDevice;
+                addMessage("Device : " + device);
                 console.log(device);
                 return setup(device);
               })
