@@ -37,7 +37,7 @@
         function setup(device) {
           console.log("setup");
           return device
-            .open()
+
             .then(() => {
 
               try{
@@ -341,20 +341,21 @@
 
           addMessage("First getDevices");
           console.log("First getDevices");
-          navigator.usb
-                  .getDevices()
-                  .then((devices) => {
-                    if (devices.length > 0) {
-                      device = devices[0];
-                      return setup(device);
-                    }
-                  })
-                  .catch((error) => {
-                    addMessage("getDevices : " + error);
-                    console.log(error);
-                  });
+          // navigator.usb
+          //         .getDevices()
+          //         .then((devices) => {
+          //           if (devices.length > 0) {
+          //             device = devices[0];
+          //             return setup(device);
+          //           }
+          //         })
+          //         .catch((error) => {
+          //           addMessage("getDevices : " + error);
+          //           console.log(error);
+          //         });
 
           if (device == null) {
+            addMessage("device null");
             console.log("device null");
             navigator.usb
               .requestDevice({
