@@ -357,20 +357,25 @@
 
           if (device == null) {
             console.log("device null");
-            navigator.usb
-              .requestDevice({
-                filters: [{ vendorId: 0x0CA6 }, { vendorId: 0x072f }],
-              })
-              .then((selectedDevice) => {
-                device = selectedDevice;
-                addMessage("Device : " + device);
-                console.log(device);
-                return setup(device);
-              })
-              .then(() => callTerminal())
-              .catch((error) => {
-                console.log(error);
-              });
+            try {
+              navigator.usb
+                      .requestDevice({
+                        filters: [{ vendorId: 0x0CA6 }, { vendorId: 0x072f }],
+                      })
+                      .then((selectedDevice) => {
+                        device = selectedDevice;
+                        addMessage("Device : " + device);
+                        console.log(device);
+                        return setup(device);
+                      })
+                      .then(() => callTerminal())
+                      .catch((error) => {
+                        console.log(error);
+                      });
+            } catch (e) {
+              addMessage("navigator Error : " + e);
+            }
+
           } else {
             addMessage("device not null null");
             console.log("device not null null");
